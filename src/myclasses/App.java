@@ -19,56 +19,45 @@ import java.util.Scanner;
  */
 public class App {
     public void run(){
-        System.out.println("Регистрация пользователся");
-        UserData userData = new UserData();
         Scanner scanner = new Scanner(System.in);
-        System.out.printf("Imja: ");
-        userData.setFirstName(scanner.nextLine());
-        System.out.printf("Familija: ");
-        userData.setLastName(scanner.nextLine());
-        System.out.printf("Nomer telefona: ");
-        userData.setTelNumber(scanner.nextInt());
-        System.out.printf("Bil zaregestrirovan polzovatel: %s %s %s %n",
-                userData.getFirstName(),
-                userData.getLastName(),
-                userData.getTelNumber());
-        
-        System.out.println("Hello");
+        UserData userData = new UserData();
         Book book = new Book();
-        book.setBookName("Voina i mir");
-        book.setReleaseYear(1828);
-        Author[] authors = new Author[1];
-        Author author = new Author();
-        author.setFirstName("Lev");
-        author.setLastName("Tolstoy");
-        author.setBirthYear(1828);
-        authors[0] = author;
-        book.setAuthors(authors);
-        System.out.printf("Vibrana kniga: %s, avtor: %s %s, god izdanija: %d %n",
-                book.getBookName(),
-                book.getAuthors()[0].getFirstName(),
-                book.getAuthors()[0].getLastName(),
-                book.getReleaseYear()
-                );
-        History history = new History();
-        history.setBook(book);
-        history.setUserData(userData);
-        Calendar c = new GregorianCalendar();
-        history.setGivenBook(c.getTime());
-        System.out.printf("Читатель %s взял читать книгу \"%s\", %s%n"
-                ,history.getUserData().getFirstName()
-                ,history.getBook().getBookName()
-                ,history.getGivenBook()
-        );
-        c = new GregorianCalendar();
-        history.setReturnBook(c.getTime());
-        System.out.printf("Читатель %s %s вернул книгу \"%s\", %s%n"
-                ,history.getUserData().getFirstName()
-                ,history.getUserData().getLastName()
-                ,history.getBook().getBookName()
-                ,history.getReturnBook()
-        );
-        
+        String repeat = "yes";
+        do{
+            System.out.println("Для продолжения прошу зарегестрируйтесь...");
+            System.out.println("");
+            System.out.println("Введите ваше имя");
+            userData.setFirstName(scanner.nextLine());
+            System.out.println("Введите вашу фамилию");
+            userData.setLastName(scanner.nextLine());
+            System.out.println("Введите ваш номер телефона");
+            userData.setTelNumber(scanner.nextInt());
+            System.out.println("Юзер иниирован как: "+userData.toString());
+            System.out.println("");
+            System.out.println("Выберете номер задачи: ");
+            System.out.println("0: закрыть программу");
+            System.out.println("1: Добавить книгу в вашу библиотеку");
+            int task = scanner.nextInt(); scanner.nextLine();
+            switch(task){
+                case 0:
+                    repeat = "no";
+                    break;
+                case 1:
+                    book.setBookName("Voina i mir");
+                    book.setReleaseYear(2010);
+                    Author[] authors = new Author[1];
+                    Author author = new Author();
+                    author.setFirstName("Lev");
+                    author.setLastName("Tolstoy");
+                    author.setBirthYear(1828);
+                    authors[0] = author;
+                    book.setAuthors(authors);
+                    System.out.printf("Добавлена книга в вашу библеотеку: "+book.toString()+"\n");
+                default:
+                    System.out.println("Выберете номер из списка!");
+            }
+        }while("yes".equals(repeat));
+        System.out.println("Пока! :)");
     }
     
 }

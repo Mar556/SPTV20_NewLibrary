@@ -40,4 +40,10 @@ public class UserData {
     public void setTelNumber(int telNumber) {
         this.telNumber = telNumber;
     }
+
+    @Override
+    public String toString() {
+        return "UserData{" + "firstName=" + firstName + ", lastName=" + lastName + ", telNumber=" + telNumber + '}';
+    }
+    
 }
